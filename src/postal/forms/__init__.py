@@ -5,7 +5,9 @@ from django_countries import data as country_data
 from postal.settings import POSTAL_ADDRESS_LINE1, POSTAL_ADDRESS_LINE2, POSTAL_ADDRESS_CITY, POSTAL_ADDRESS_STATE, \
     POSTAL_ADDRESS_CODE
 
-country_list = [('', '-'*45)] + country_data.COUNTRIES.items()
+
+country_list = [('', '-'*45)] + sorted(country_data.COUNTRIES.items(),
+                                       key=lambda x: str(x[1]))
 
 
 class PostalAddressForm(forms.Form):
